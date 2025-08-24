@@ -2,10 +2,11 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    // Redirect back to login page if not POST
-    header("Location: index.html");
+    http_response_code(405); // Set 405 status explicitly
+    echo "Method Not Allowed. Please login via the form.";
     exit();
 }
+
 
 // Database connection
 $host = 'localhost';
