@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    // Redirect back to login page if not POST
+    header("Location: index.html");
+    exit();
+}
+
 // Database connection
 $host = 'localhost';
 $db   = 'user_login';
@@ -20,7 +26,7 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
-// Get form input
+// Get form input safely
 $username = $_POST['username'];
 $password = $_POST['password'];
 
